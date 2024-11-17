@@ -9,12 +9,10 @@ test('renders learn react link', () => {
   expect(linkElement).toBeInTheDocument();
 });
 
-//import '@testing-library/jest-dom/extend-expect';
-
 // Normal Test Cases
 
 test('Click on the Outer Button triggers the correct alert', () => {
-    window.alert = jest.fn(); // Mock alert function
+    window.alert = jest.fn();
 
     render(<NestedButtons />);
     const outerButton = screen.getByText('Outer Button');
@@ -25,7 +23,7 @@ test('Click on the Outer Button triggers the correct alert', () => {
 });
 
 test('Click on the Inner Button triggers the correct alert and stops propagation', () => {
-    window.alert = jest.fn(); // Mock alert function
+    window.alert = jest.fn();
 
     render(<NestedButtons />);
     const innerButton = screen.getByText('Inner Button');
@@ -49,12 +47,11 @@ test('DOM structure contains both buttons', () => {
 // Edge Test Cases
 
 test('Clicking inner button triggers only inner button alert as expected', () => {
-  window.alert = jest.fn(); // Mock alert function
+  window.alert = jest.fn();
 
   render(<NestedButtons />);
   const innerButton = screen.getByText('Inner Button');
 
-  // Simulate a normal click on the inner button
   fireEvent.click(innerButton);
 
   expect(window.alert).toHaveBeenCalledWith('Inner button clicked');
@@ -62,12 +59,11 @@ test('Clicking inner button triggers only inner button alert as expected', () =>
 });
 
 test('Clicking overlapping region triggers only outer button alert', () => {
-    window.alert = jest.fn(); // Mock alert function
+    window.alert = jest.fn();
 
     render(<NestedButtons />);
     const outerButton = screen.getByText('Outer Button');
 
-    // Simulate a click at an overlapping position
     fireEvent.click(outerButton);
 
     expect(window.alert).toHaveBeenCalledWith('Outer button clicked');
@@ -75,12 +71,11 @@ test('Clicking overlapping region triggers only outer button alert', () => {
 });
 
 test('Simulate bubbling from inner to outer and verify alerts', () => {
-    window.alert = jest.fn(); // Mock alert function
+    window.alert = jest.fn();
 
     render(<NestedButtons />);
     const innerButton = screen.getByText('Inner Button');
 
-    // Simulate event bubbling behavior
     fireEvent.click(innerButton);
 
     expect(window.alert).toHaveBeenCalledWith('Inner button clicked');
