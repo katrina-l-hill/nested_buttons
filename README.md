@@ -21,6 +21,7 @@ The `NestedButtons` component is a React component that demonstrates nested butt
 1. **Clone the repository** (or download the files):
    - git clone https://github.com/katrina-l-hill/nested_buttons
    - cd into the repository directory, `event-propagation-assignment`
+   - Run `npm install`
 2. **Run the Main program**:
    - run `npm start`
 3. **Run the tests**:
